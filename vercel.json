@@ -1,17 +1,15 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "functions": {
-    "server/index.ts": {
-      "runtime": "@vercel/node"
-    }
-  },
-  "routes": [
+  "builds": [
     {
-      "src": "/api/(.*)",
-      "dest": "/server/index.ts"
-    },
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
     {
       "src": "/(.*)",
       "dest": "/dist/$1"
